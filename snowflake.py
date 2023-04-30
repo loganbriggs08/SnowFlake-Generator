@@ -5,7 +5,7 @@ class Snowflake:
         self.node_id: int = node_id
         self.worker_id: int = worker_id
         
-    def generate(self) -> int:
+    def check_node_and_worker(self) -> int:
         try:
             if Check.check5Bit(self.node_id) == False or Check.check5Bit(self.worker_id) == False:
                 return 0
