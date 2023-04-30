@@ -5,7 +5,7 @@ variables: dict[str] = {
 }
 
 class Check:
-    def fiveBit(number: int) -> bool:
+    def check5Bit(number: int) -> bool:
         """Check if a 5 bit number is valid.
 
         Args:
@@ -20,7 +20,7 @@ class Check:
         else:
             return True
         
-    def twelveBit(number: int) -> bool:
+    def check12Bit(number: int) -> bool:
         """Check if a 12 bit number is valid.
 
         Args:
@@ -35,7 +35,7 @@ class Check:
         else:
             return True
         
-    def fortyOneBit(number: int) -> bool:
+    def check41Bit(number: int) -> bool:
         """Check if a 41 bit number is valid.
 
         Args:
