@@ -8,27 +8,19 @@ class Snowflake:
         self.worker_id: int = worker_id
         
     @staticmethod
-    def fetch_random_number(snowflake_id: int) -> int:
-        snowflake_binary: int = bin(snowflake_id)[2:].zfill(12)
-        
+    def fetch_random_number(snowflake_binary: int) -> int:
         return int(snowflake_binary[52:], 2)
     
     @staticmethod
-    def fetch_worker_id(snowflake_id: int) -> int:
-        snowflake_binary: int = bin(snowflake_id)[2:].zfill(5)
-        
+    def fetch_worker_id(snowflake_binary: int) -> int:
         return int(snowflake_binary[47:52], 2)
     
     @staticmethod
-    def fetch_node_id(snowflake_id: int) -> int:
-        snowflake_binary: int = bin(snowflake_id)[2:].zfill(5)
-        
+    def fetch_node_id(snowflake_binary: int) -> int:
         return int(snowflake_binary[42:47], 2)
     
     @staticmethod
     def fetch_time_since_epoch(snowflake_binary: int) -> int:
-        snowflake_binary: int = bin(snowflake_binary)[2:].zfill(41)
-        
         return int(snowflake_binary[1:42], 2)
       
     def check_node_and_worker(self) -> int:
@@ -40,16 +32,17 @@ class Snowflake:
         except:
             return 0
         
-    def generate(self) -> int:
+    def generate(self) -> dict[str]:
         """Generate a random snowflake.
 
         Returns:
-            int: Our snowflake that has been generated.
+            dict[str]: Our snowflake and the binary representation of it.
         """
         
         snowflake_binary: str = self._generate_snowflake()
         
-        return int(snowflake_binary, 2)
+        return {"snowflake_binary": snowflake_binary, "snowflake": int(snowflake_binary, 2)}
+    
     
     def _generate_snowflake(self) -> str:
         """Generate a random snowflake.
