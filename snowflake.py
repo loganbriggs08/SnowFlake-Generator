@@ -22,6 +22,10 @@ class Snowflake:
     @staticmethod
     def fetch_time_since_epoch(snowflake_binary: int) -> int:
         return int(snowflake_binary[1:42], 2)
+    
+    @staticmethod
+    def snowflake_to_binary(snowflake: int) -> str:
+        return bin(snowflake)[2:].zfill(64)
       
     def check_node_and_worker(self) -> int:
         try:
@@ -42,7 +46,6 @@ class Snowflake:
         snowflake_binary: str = self._generate_snowflake()
         
         return {"snowflake_binary": snowflake_binary, "snowflake": int(snowflake_binary, 2)}
-    
     
     def _generate_snowflake(self) -> str:
         """Generate a random snowflake.
