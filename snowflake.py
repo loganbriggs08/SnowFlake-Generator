@@ -52,4 +52,13 @@ class Snowflake:
     @staticmethod
     def fetch_random_number(snowflake_binary: int) -> int:
         return int(snowflake_binary[52:], 2)
+    
+    @staticmethod
+    def fetch_worker_id(snowflake_binary: int) -> int:
+        return int(snowflake_binary[47:52], 2)
+    
+    @staticmethod
+    def fetch_node_id(snowflake_binary: int) -> int:
+        return int(snowflake_binary[42:47], 2)
+    
         
