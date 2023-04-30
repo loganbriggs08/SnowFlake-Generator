@@ -6,6 +6,22 @@ class Snowflake:
     def __init__(self, node_id: int, worker_id):
         self.node_id: int = node_id
         self.worker_id: int = worker_id
+        
+    @staticmethod
+    def fetch_random_number(snowflake_binary: int) -> int:
+        return int(snowflake_binary[52:], 2)
+    
+    @staticmethod
+    def fetch_worker_id(snowflake_binary: int) -> int:
+        return int(snowflake_binary[47:52], 2)
+    
+    @staticmethod
+    def fetch_node_id(snowflake_binary: int) -> int:
+        return int(snowflake_binary[42:47], 2)
+    
+    @staticmethod
+    def fetch_time_since_epoch(snowflake_binary: int) -> int:
+        return int(snowflake_binary[1:42], 2)
       
     def check_node_and_worker(self) -> int:
         try:
@@ -48,17 +64,5 @@ class Snowflake:
         snowflake_binary: str = f"0{time_since_epoch_binary}{node_id_binary}{worker_id_binary}{random_12_bit_number_binary}"
         
         return snowflake_binary
-    
-    @staticmethod
-    def fetch_random_number(snowflake_binary: int) -> int:
-        return int(snowflake_binary[52:], 2)
-    
-    @staticmethod
-    def fetch_worker_id(snowflake_binary: int) -> int:
-        return int(snowflake_binary[47:52], 2)
-    
-    @staticmethod
-    def fetch_node_id(snowflake_binary: int) -> int:
-        return int(snowflake_binary[42:47], 2)
     
         
