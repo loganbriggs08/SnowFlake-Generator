@@ -57,7 +57,7 @@ class Snowflake:
         node_id: int = self.node_id
         worker_id: int = self.worker_id
         random_12_bit_number: int = Random.random_12_bit_number()
-
+        
         time_since_epoch_binary: str = bin(time_since_epoch)[2:].zfill(41)
         node_id_binary: str = bin(node_id)[2:].zfill(5)
         worker_id_binary: str = bin(worker_id)[2:].zfill(5)
