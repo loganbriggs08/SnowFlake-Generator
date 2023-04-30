@@ -22,16 +22,29 @@ class Snowflake:
         Returns:
             int: Our snowflake that has been generated.
         """
+        
+        snowflake_binary: str = self._generate_snowflake()
+        
+        return snowflake_binary
+    
+    def _generate_snowflake(self) -> str:
+        """Generate a random snowflake.
 
-        time_since_epoch: int = bin(Time.time_since_epoch())[2:].zfill(41)
-        node_id: int = bin(self.node_id)[2:].zfill(5)
-        worker_id: int = bin(self.worker_id)[2:].zfill(5)
-        random_12_bit_number: int = bin(Random.random_12_bit_number())[2:].zfill(12)
+        Returns:
+            str: Binary representation of the snowflake.
+        """
+        time_since_epoch: int = Time.time_since_epoch()
+        node_id: int = self.node_id
+        worker_id: int = self.worker_id
+        random_12_bit_number: int = Random.random_12_bit_number()
+
+        time_since_epoch_binary: str = bin(time_since_epoch)[2:].zfill(41)
+        node_id_binary: str = bin(node_id)[2:].zfill(5)
+        worker_id_binary: str = bin(worker_id)[2:].zfill(5)
+        random_12_bit_number_binary: str = bin(random_12_bit_number)[2:].zfill(12)
         
-        return_string: str = f"0{time_since_epoch}{node_id}{worker_id}{random_12_bit_number}"
-        return_int: int = int(return_string)
+        snowflake_binary: str = f"0{time_since_epoch_binary}{node_id_binary}{worker_id_binary}{random_12_bit_number_binary}"
         
-        print(f"Binary: {return_int}")
-        print(f"Decimal: {int(return_int)}")
+        return snowflake_binary
         
         
