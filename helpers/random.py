@@ -8,4 +8,3 @@ class Random:
             return 0
         else:
             return random_number
-            
