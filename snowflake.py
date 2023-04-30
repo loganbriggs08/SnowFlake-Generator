@@ -6,7 +6,7 @@ class Snowflake:
     def __init__(self, node_id: int, worker_id):
         self.node_id: int = node_id
         self.worker_id: int = worker_id
-        
+      
     def check_node_and_worker(self) -> int:
         try:
             if Check.check5Bit(self.node_id) == False or Check.check5Bit(self.worker_id) == False:
@@ -43,8 +43,13 @@ class Snowflake:
         worker_id_binary: str = bin(worker_id)[2:].zfill(5)
         random_12_bit_number_binary: str = bin(random_12_bit_number)[2:].zfill(12)
         
+        print(random_12_bit_number)
+        
         snowflake_binary: str = f"0{time_since_epoch_binary}{node_id_binary}{worker_id_binary}{random_12_bit_number_binary}"
         
         return snowflake_binary
-        
+    
+    @staticmethod
+    def fetch_random_number(snowflake_binary: int) -> int:
+        return int(snowflake_binary[52:], 2)
         
